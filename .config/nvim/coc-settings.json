@@ -1,0 +1,9 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "scala", "sbt"],
+  "coc.preferences.formatOnType": true,
+
+  "codeLens.enable": true,
+
+  "metals.scalafmtConfigPath": "/Users/aherrera/.metals/.scalafmt.conf",
+  "metals.statusBarEnabled": true
+}
