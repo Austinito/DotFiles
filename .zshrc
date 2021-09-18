@@ -114,6 +114,9 @@ alias my_zkstart='zookeeper-server-start /usr/local/Cellar/kafka/2.8.0/libexec/c
 alias my_kfstart='kafka-server-start /usr/local/Cellar/kafka/2.8.0/libexec/config/server.properties'
 alias my_config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# alias so that you can commit only non-whitespace changes
+alias .addnw='git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero'
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/aherrera/.sdkman"
 [[ -s "/Users/aherrera/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/aherrera/.sdkman/bin/sdkman-init.sh"

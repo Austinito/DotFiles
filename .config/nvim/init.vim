@@ -26,7 +26,7 @@ set clipboard+=unnamedplus
 call plug#begin('~/.config/nvim/plugged')
 
     Plug 'christoomey/vim-tmux-navigator'
-	Plug 'morhetz/gruvbox'
+    Plug 'morhetz/gruvbox'
     Plug 'geverding/vim-hocon'
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf'
@@ -60,6 +60,9 @@ let g:netrw_preview=1
 let g:netrw_liststyle=3
 let g:netrw_winsize=30
 
+" Markdown features
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'scala']
+
 " remaps
 let mapleader=" "
 
@@ -74,6 +77,7 @@ nnoremap <C-k> :call <SID>show_documentation()<CR>
 " feels good, so why not
 nnoremap <silent>- :Fern %:h<cr>
 nnoremap <silent>_ :Fern .<cr>
+nnoremap <silent>E :Fern . -drawer<cr>
 nnoremap <leader><cr> :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>vrc :ex ~/.config/nvim/init.vim<CR>
 
