@@ -130,5 +130,5 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 
-" CUSTOM 
+" CUSTOM
 nnoremap <space>oi :call CocAction('runCommand', 'editor.action.organizeImport')<CR>

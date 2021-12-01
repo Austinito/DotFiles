@@ -77,6 +77,9 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home
 export PATH="$PATH:/Users/aherrera/Library/Application Support/Coursier/bin"
+export PATH="$HOME/tools/lua-language-server/bin/macOS:$PATH"
+export PATH="$HOME/tools/java-language-server/dist:$PATH"
+export POSTGRES_SETUP_FILE="$HOME/workspace/scratchpad/script/sql_scripts/PostgresSetup.sql"
 
 # export BASH_SOURCE=/bin/bash
 
@@ -108,15 +111,22 @@ export PATH="$PATH:/Users/aherrera/Library/Application Support/Coursier/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias my_gbpurge='git branch --merged | grep -Ev "(\*|master|develop|feature|\*WHUSP-14988\*)" | sed 's/+//' | xargs -n 1 git branch -d'
+#
+# Custom Scripts/Aliases
+alias my_gbpurge='git branch --merged | grep -Ev "(\*|master|develop)" | sed 's/+//' | xargs -n 1 git branch -d'
 alias my_gotokafkadirectory='cd /usr/local/Cellar/kafka/2.8.0/libexec'
-alias my_zkstart='zookeeper-server-start /usr/local/Cellar/kafka/2.8.0/libexec/config/zookeeper.properties'
-alias my_kfstart='kafka-server-start /usr/local/Cellar/kafka/2.8.0/libexec/config/server.properties'
+alias my_postgresstart='~/workspace/bash/autoStartPostgres.exp'
+alias my_zkstart='zookeeper-server-start /usr/local/Cellar/kafka/3.0.0/libexec/config/zookeeper.properties'
+alias my_kfstart='kafka-server-start /usr/local/Cellar/kafka/3.0.0/libexec/config/server.properties'
 alias my_config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias my_tmux='$HOME/myModelTmux.sh'
 
-# alias so that you can commit only non-whitespace changes
-alias .addnw='git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/aherrera/.sdkman"
 [[ -s "/Users/aherrera/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/aherrera/.sdkman/bin/sdkman-init.sh"
+
+alias luamake=/Users/aherrera/tools/lua-language-server/3rd/luamake/luamake
