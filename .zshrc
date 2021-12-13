@@ -114,8 +114,8 @@ export POSTGRES_SETUP_FILE="$HOME/workspace/scratchpad/script/sql_scripts/Postgr
 #
 # Custom Scripts/Aliases
 alias my_gbpurge='git branch --merged | grep -Ev "(\*|master|develop)" | sed 's/+//' | xargs -n 1 git branch -d'
-alias my_gotokafkadirectory='cd /usr/local/Cellar/kafka/2.8.0/libexec'
-alias my_postgresstart='~/workspace/bash/autoStartPostgres.exp'
+#alias my_gotokafkadirectory='cd /usr/local/Cellar/kafka/2.8.0/libexec'
+alias my_postgresstart='~/workspace/scripts/autoStartPostgres.exp'
 alias my_zkstart='zookeeper-server-start /usr/local/Cellar/kafka/3.0.0/libexec/config/zookeeper.properties'
 alias my_kfstart='kafka-server-start /usr/local/Cellar/kafka/3.0.0/libexec/config/server.properties'
 alias my_config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
