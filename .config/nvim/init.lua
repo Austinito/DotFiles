@@ -17,6 +17,12 @@ require("renamer").setup()
 --vim.lsp.set_log_level('trace')
 
 ----------------------------------
+-- CONFIGURE PLUGINS -------------
+----------------------------------
+
+require("configs.treesitter")
+
+----------------------------------
 -- VARIABLES ---------------------
 ----------------------------------
 
@@ -56,11 +62,15 @@ map("n", "<C-w>k", "<cmd>TmuxNavigateUp<CR>")
 map("n", "<C-w>l", "<cmd>TmuxNavigateRight<CR>")
 map("n", "<C-w>p", "<cmd>TmuxNavigatePrevious<CR>")
 
--- Fuzzy Finder
+---- Fuzzy Finder
 map("n", "<leader><tab>", "<Plug>(fzf-maps-n)")
-map("n", "<leader>F", "<cmd>Files<CR>")
+--map("n", "<leader>F", "<cmd>Files<CR>")
+map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true, layout_config={prompt_position="top"}})<CR>]])
 
 -- Git Worktree
+-- show the worktre
+map("n", "<leader>B", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+
 
 -- LSP
 --map("n", "<C-K>", ":lua vim.lsp.buf.signature_help()<CR>")
@@ -76,8 +86,8 @@ map("n", "<leader>rn", [[<cmd>lua require("renamer").rename()<CR>]])
 map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 map("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 map("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
@@ -105,6 +115,10 @@ cmd [[set clipboard+=unnamedplus]]
 cmd [[set formatoptions-=cro]]
 
 cmd [[let NERDDefaultAlign='start']]
+
+cmd [[let g:airline#extensions#branch#displayed_head_limit = 10]]
+-- cmd [[let g:airline_section_b = '%-0.20{getcwd()}']]
+cmd [[let g:airline_section_c = '%t']]
 
 -- LSP
 cmd [[augroup lsp]]

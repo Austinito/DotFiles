@@ -12,7 +12,9 @@ return require('packer').startup(function (use)
     use 'junegunn/goyo.vim'
     use 'lambdalisue/fern.vim'
     use 'lambdalisue/fern-hijack.vim'
-
+    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/playground'
 --    use {'neoclide/coc.nvim', branch = 'release'}
 
     -- LSP STUFFS ------------------------------------------------------------

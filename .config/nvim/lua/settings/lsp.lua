@@ -29,7 +29,7 @@ M.setup = function()
     local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ':h:h:h')
 
     lsp_config.sumneko_lua.setup {
-        cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
+--        cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
         settings = {
             Lua = {
                 runtime = {
