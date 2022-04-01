@@ -1,6 +1,7 @@
 -- Helper functions
 local cmd = vim.cmd
 --local fn = vim.fn
+local opt = vim.opt
 local map = require("settings.functions").map
 
 ----------------------------------
@@ -11,16 +12,23 @@ require("plugins")
 require("sets")
 require("settings.cmp").setup()
 require("settings.lsp").setup()
+require("settings.statusline")
 require("settings.functions")
 
 require("renamer").setup()
 --vim.lsp.set_log_level('trace')
+
+opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
 
 ----------------------------------
 -- CONFIGURE PLUGINS -------------
 ----------------------------------
 
 require("configs.treesitter")
+--require("configs.airline")
+cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
+cmd([[hi! link StatusError DiagnosticError]])
+cmd([[hi! link StatusWarn DiagnosticWarn]])
 
 ----------------------------------
 -- VARIABLES ---------------------
@@ -113,12 +121,7 @@ cmd [[set isfname+=@-@]]
 cmd [[set guicursor=a:block-blinkon0]]
 cmd [[set clipboard+=unnamedplus]]
 cmd [[set formatoptions-=cro]]
-
 cmd [[let NERDDefaultAlign='start']]
-
-cmd [[let g:airline#extensions#branch#displayed_head_limit = 10]]
--- cmd [[let g:airline_section_b = '%-0.20{getcwd()}']]
-cmd [[let g:airline_section_c = '%t']]
 
 -- LSP
 cmd [[augroup lsp]]

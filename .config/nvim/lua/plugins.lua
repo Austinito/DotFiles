@@ -37,7 +37,7 @@ return require('packer').startup(function (use)
     use 'tpope/vim-surround'
 
     -- Status Bar
-    use 'vim-airline/vim-airline'
+--    use 'vim-airline/vim-airline'
     use 'powerline/powerline-fonts'
     use 'ryanoasis/vim-devicons'
 end

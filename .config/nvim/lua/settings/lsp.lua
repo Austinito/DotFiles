@@ -10,9 +10,19 @@ M.setup = function()
     Metals_config = require("metals").bare_config()
 
     Metals_config.settings = {
+        serverProperties = {
+            "-Xms8G",
+            "-Xmx12G",
+        },
+        ammoniteJvmProperties = {"-Xmx1G"},
         showImplicitArguments = true,
         showInferredType = true,
+        excludedPackages = {
+            "akka.actor.typed.javadsl",
+            "com.github.swagger.akka.javadsl"
+        }
     }
+    Metals_config.init_options.statusBarProvider = "on"
     Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 --    Metals_config.on_attach = function (client, bufnr)
