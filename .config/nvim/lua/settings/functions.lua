@@ -16,7 +16,17 @@ local function toggle_quickfix()
     vim.cmd('copen')
 end
 
+
+local function clear_registers()
+    vim.cmd[[let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+    for r in regs
+      call setreg(r, [])
+    endfor
+    ]]
+end
+
 return {
     map = map,
-    toggle_quickfix = toggle_quickfix
+    toggle_quickfix = toggle_quickfix,
+    clear_registers = clear_registers
 }

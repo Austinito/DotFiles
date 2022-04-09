@@ -124,8 +124,8 @@ cmd [[set formatoptions-=cro]]
 cmd [[let NERDDefaultAlign='start']]
 
 -- LSP
-cmd [[augroup lsp]]
-cmd [[autocmd!]]
-cmd [[autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
-cmd [[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
-cmd [[augroup end]]
+cmd [[augroup lsp
+autocmd!
+autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
+augroup end]]
