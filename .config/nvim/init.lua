@@ -81,14 +81,14 @@ map("n", "<leader>B", [[<cmd>lua require('telescope').extensions.git_worktree.gi
 
 
 -- LSP
---map("n", "<C-K>", ":lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
---map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
---map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
---map("n", "<leader>wl", "<cmd>lua vim.inspect(vim.lsp.buf.list_workspace_folders())<CR>")
+map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
+map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
+map("n", "<leader>wl", "<cmd>lua vim.inspect(vim.lsp.buf.list_workspace_folders())<CR>")
 map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 map("n", "<leader>rn", [[<cmd>lua require("renamer").rename()<CR>]])
 map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
