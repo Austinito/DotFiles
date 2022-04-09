@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# EDITOR LISTED -- For TMUX Integrations
+export EDITOR="nvim"
+
 ZSH_THEME="jnrowe"
 DISABLE_AUTO_UPDATE="true"
 
