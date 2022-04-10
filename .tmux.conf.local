@@ -330,9 +330,12 @@ tmux_conf_copy_to_os_clipboard=false
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
+
+# Reduce timeout for repeat commands
+set -g repeat-time 280
+
 # turn off activity monotiring
 set -g monitor-activity off
-
 
 # increase history size
 #set -g history-limit 10000
