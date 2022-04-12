@@ -333,7 +333,6 @@ tmux_conf_copy_to_os_clipboard=false
 # turn off activity monotiring
 set -g monitor-activity off
 
-
 # increase history size
 #set -g history-limit 10000
 
@@ -352,9 +351,6 @@ unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
 
-#remove the "gaps" between windows
-#window_status_seperator=""
-#set-window-option -g window-status-separator ""
 
 # move status line to top
 #set -g status-position top
