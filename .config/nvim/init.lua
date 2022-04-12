@@ -25,6 +25,7 @@ opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
 ----------------------------------
 
 require("configs.treesitter")
+require("configs.telescope")
 --require("configs.airline")
 cmd([[hi! StatusLine guifg=#5C6370 guibg=#282c34]])
 cmd([[hi! link StatusError DiagnosticError]])
@@ -64,11 +65,11 @@ map("n", "<leader>,", "<cmd>bnext<CR>")
 map("n", "<leader>.", "<cmd>bprevious<CR>")
 
 -- Window Naviation With Tmux
-map("n", "<C-w>h", "<cmd>TmuxNavigateLeft<CR>")
-map("n", "<C-w>j", "<cmd>TmuxNavigateDown<CR>")
-map("n", "<C-w>k", "<cmd>TmuxNavigateUp<CR>")
-map("n", "<C-w>l", "<cmd>TmuxNavigateRight<CR>")
-map("n", "<C-w>p", "<cmd>TmuxNavigatePrevious<CR>")
+--map("n", "<C-w>h", "<cmd>TmuxNavigateLeft<CR>")
+--map("n", "<C-w>j", "<cmd>TmuxNavigateDown<CR>")
+--map("n", "<C-w>k", "<cmd>TmuxNavigateUp<CR>")
+--map("n", "<C-w>l", "<cmd>TmuxNavigateRight<CR>")
+--map("n", "<C-w>p", "<cmd>TmuxNavigatePrevious<CR>")
 
 ---- Fuzzy Finder
 map("n", "<leader><tab>", "<Plug>(fzf-maps-n)")
@@ -79,9 +80,9 @@ map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidde
 -- show the worktre
 map("n", "<leader>B", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
 
-
 -- LSP
-map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+--map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<C-K>", "<cmd>lua require('metals').hover_worksheet()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")

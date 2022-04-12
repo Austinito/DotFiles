@@ -3,7 +3,7 @@
 return require('packer').startup(function (use)
     use {'wbthomason/packer.nvim', opt = true}
 
-    use 'christoomey/vim-tmux-navigator'
+--    use 'christoomey/vim-tmux-navigator'
     use 'morhetz/gruvbox'
     use 'geverding/vim-hocon'
     use 'jiangmiao/auto-pairs'

@@ -16,7 +16,6 @@ M.setup = function()
         },
         ammoniteJvmProperties = {"-Xmx1G"},
         showImplicitArguments = true,
-        showInferredType = true,
         excludedPackages = {
             "akka.actor.typed.javadsl",
             "com.github.swagger.akka.javadsl"
