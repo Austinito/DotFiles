@@ -39,8 +39,8 @@ cmd([[hi! link StatusWarn DiagnosticWarn]])
 ---- SETUP MAPPINGS ----------------
 ------------------------------------
 -- General
-map("n", "J", "<cmd>move +1<CR>")
-map("n", "K", "<cmd>move -2<CR>")
+--map("n", "J", "<cmd>move +1<CR>")
+--map("n", "K", "<cmd>move -2<CR>")
 map("v", "J", ":m '>+1<CR>gv")
 map("v", "K", ":m '<-2<CR>gv")
 
@@ -73,7 +73,6 @@ map("n", "<leader>.", "<cmd>bprevious<CR>")
 
 ---- Fuzzy Finder
 map("n", "<leader><tab>", "<Plug>(fzf-maps-n)")
---map("n", "<leader>F", "<cmd>Files<CR>")
 map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true})<CR>]])
 
 -- Git Worktree
@@ -82,8 +81,6 @@ map("n", "<leader>wl", [[<cmd>lua require('telescope').extensions.git_worktree.g
 map("n", "<leader>wc", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
 
 -- LSP
---map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<C-K>", "<cmd>lua require('metals').hover_worksheet()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -127,5 +124,5 @@ cmd [[let NERDDefaultAlign='start']]
 cmd [[augroup lsp
 autocmd!
 autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
-autocmd FileType scala autocmd BufWritePre <cmd>lua require("metals").initialize_or_attach(Metals_config)
+autocmd FileType scala autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(_, 5000)
 augroup end]]

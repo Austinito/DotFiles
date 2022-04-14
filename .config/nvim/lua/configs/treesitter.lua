@@ -1,5 +1,6 @@
 return require("nvim-treesitter.configs").setup {
     playground = {
+        ensure_installed = "maintained",
         enable = true,
         disable = {},
         updatetime = 25,
