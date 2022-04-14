@@ -74,11 +74,12 @@ map("n", "<leader>.", "<cmd>bprevious<CR>")
 ---- Fuzzy Finder
 map("n", "<leader><tab>", "<Plug>(fzf-maps-n)")
 --map("n", "<leader>F", "<cmd>Files<CR>")
-map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true, layout_config={prompt_position="top"}})<CR>]])
+map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true})<CR>]])
 
 -- Git Worktree
 -- show the worktre
-map("n", "<leader>B", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+map("n", "<leader>wl", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+map("n", "<leader>wc", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
 
 -- LSP
 --map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
@@ -87,9 +88,6 @@ map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-map("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
-map("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
-map("n", "<leader>wl", "<cmd>lua vim.inspect(vim.lsp.buf.list_workspace_folders())<CR>")
 map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 map("n", "<leader>rn", [[<cmd>lua require("renamer").rename()<CR>]])
 map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
@@ -125,8 +123,9 @@ cmd [[set formatoptions-=cro]]
 cmd [[let NERDDefaultAlign='start']]
 
 -- LSP
+--autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 cmd [[augroup lsp
 autocmd!
-autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
+autocmd FileType scala autocmd BufWritePre <cmd>lua require("metals").initialize_or_attach(Metals_config)
 augroup end]]
