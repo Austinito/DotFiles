@@ -24,7 +24,7 @@ M.setup = function()
     Metals_config.init_options.statusBarProvider = "on"
     Metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
---    Metals_config.on_attach = function (client, bufnr)
+--    Metals_config.on_attach = function(client, bufnr)
 --        vim.cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
 --        vim.cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
 --        vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])

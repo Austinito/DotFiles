@@ -47,10 +47,9 @@ map("v", "K", ":m '<-2<CR>gv")
 map("i", "<C-c>", "<esc>")
 map("n", "<F2>", "<cmd>call TrimWhiteSpace()<CR>")
 
-map("n", "<leader><cr>", "<cmd>source $MYVIMRC<CR>")
+map("n", "<leader><cr>", "<cmd>source $MYVIMRC<CR><cmd>lua print('sourced.')<CR>")
 map("n", "<leader>vrc", "<cmd>edit $MYVIMRC<CR>")
 
-map("n", "<leader><space>", "<cmd>lua print([[You're doing great!]])<CR>")
 map("n", "Q", [[<cmd>lua require("settings.functions").toggle_quickfix()<CR>]])
 
 -- Directory Navigation
@@ -64,22 +63,15 @@ map("n", "<leader>n", "<cmd>enew<CR>")
 map("n", "<leader>,", "<cmd>bnext<CR>")
 map("n", "<leader>.", "<cmd>bprevious<CR>")
 
--- Window Naviation With Tmux
---map("n", "<C-w>h", "<cmd>TmuxNavigateLeft<CR>")
---map("n", "<C-w>j", "<cmd>TmuxNavigateDown<CR>")
---map("n", "<C-w>k", "<cmd>TmuxNavigateUp<CR>")
---map("n", "<C-w>l", "<cmd>TmuxNavigateRight<CR>")
---map("n", "<C-w>p", "<cmd>TmuxNavigatePrevious<CR>")
-
 ---- Fuzzy Finder
-map("n", "<leader><tab>", "<Plug>(fzf-maps-n)")
+map("n", "<leader><TAB>",[[<cmd> lua require("telescope.builtin").keymaps()<CR>]])
 --map("n", "<leader>F", "<cmd>Files<CR>")
 map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true})<CR>]])
 
 -- Git Worktree
 -- show the worktre
-map("n", "<leader>wl", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
-map("n", "<leader>wc", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
+map("n", "<leader>lw", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+map("n", "<leader>aw", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
 
 -- LSP
 --map("n", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
@@ -90,7 +82,7 @@ map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 map("n", "<leader>rn", [[<cmd>lua require("renamer").rename()<CR>]])
-map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+map("n", "<leader><space>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 map("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
@@ -99,6 +91,13 @@ map("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
 
+-- temporary
+--
+map("n", "<leader>tr", "<cmd>lua package.loaded.ts = nil<cr>")
+map("n", "<leader>tt", "<cmd>lua require 'ts-import'.tf()<cr>")
+--
+--
+--#region
 ------------------------------------
 ---- COMMANDS ----------------------
 ------------------------------------
@@ -114,7 +113,11 @@ autocmd FileType * autocmd BufWritePre <buffer> call TrimWhiteSpace()
 false
 )
 
-cmd "colorscheme gruvbox"
+------------------------------------
+---- LAST MINUTE OVERRIDES ---------
+------------------------------------
+cmd [[colorscheme gruvbox]]
+cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 
 cmd [[set isfname+=@-@]]
 cmd [[set guicursor=a:block-blinkon0]]
@@ -122,10 +125,15 @@ cmd [[set clipboard+=unnamedplus]]
 cmd [[set formatoptions-=cro]]
 cmd [[let NERDDefaultAlign='start']]
 
+-- when working with mardown files, we want wrap enabled.
+cmd [[autocmd FileType markdown set wrap]]
+
 -- LSP
 --autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
 cmd [[augroup lsp
 autocmd!
 autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
-autocmd FileType scala autocmd BufWritePre <cmd>lua require("metals").initialize_or_attach(Metals_config)
+autocmd FileType scala autocmd BufWritePre lua vim.lsp.buf.formating_sync()
 augroup end]]
+
+

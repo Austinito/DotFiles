@@ -89,15 +89,15 @@ yellow="#FF0000"    # yellow
 
 ## window style
 #tmux_conf_theme_window_fg="default"
-#tmux_conf_theme_window_bg="default"
+tmux_conf_theme_window_bg="default"
 
 ## highlight focused pane (tmux >= 2.1), possible values are:
 ##   - true
 ##   - false (default)
-tmux_conf_theme_highlight_focused_pane=true
+#tmux_conf_theme_highlight_focused_pane=true
 
 ## focused pane colours:
-tmux_conf_theme_focused_pane_bg="$dark0"
+#tmux_conf_theme_focused_pane_bg="$dark0"
 
 # pane border style, possible values are:
 #   - thin (default)
