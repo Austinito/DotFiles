@@ -40,6 +40,9 @@ return require('packer').startup(function (use)
 --    use 'vim-airline/vim-airline'
     use 'powerline/powerline-fonts'
     use 'ryanoasis/vim-devicons'
+
+    -- Mine?
+    use 'Austinito/scalaimport'
 end
 )
 
