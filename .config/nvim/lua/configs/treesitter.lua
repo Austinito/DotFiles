@@ -1,4 +1,9 @@
 return require("nvim-treesitter.configs").setup {
+    ensure_installed = { "java", "lua", "python", "scala" },
+    highlight = {
+        enable = true,
+        disable = {},
+    },
     playground = {
         enable = true,
         disable = {},

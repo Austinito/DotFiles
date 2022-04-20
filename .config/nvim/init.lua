@@ -93,6 +93,7 @@ map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
 
 -- temporary
 --
+map("n", "<leader>oi", "<cmd>lua require('scalaimport').organize_imports()<CR>")
 map("n", "<leader>tr", "<cmd>lua package.loaded.ts = nil<cr>")
 map("n", "<leader>tt", "<cmd>lua require 'ts-import'.tf()<cr>")
 --

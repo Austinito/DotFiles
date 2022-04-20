@@ -49,7 +49,7 @@ M.setup = function()
                 },
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
-                    globals = {'vim'},
+                    globals = {'vim', 'string', 'pairs', 'ipairs', 'print', 'table', 'next'},
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
