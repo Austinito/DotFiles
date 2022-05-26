@@ -126,6 +126,7 @@ cmd [[set guicursor=a:block-blinkon0]]
 cmd [[set clipboard+=unnamedplus]]
 cmd [[set formatoptions-=cro]]
 cmd [[let NERDDefaultAlign='start']]
+vim.opt_global.shortmess:remove("F")
 
 -- when working with mardown files, we want wrap enabled.
 cmd [[autocmd FileType markdown set wrap]]
