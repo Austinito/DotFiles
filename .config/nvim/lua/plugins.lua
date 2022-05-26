@@ -25,10 +25,12 @@ return require('packer').startup(function (use)
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
     use 'preservim/nerdcommenter'
-
     use 'nvim-lua/plenary.nvim' -- required by nvim-metals
     use 'filipdutescu/renamer.nvim'
     use 'scalameta/nvim-metals'
+
+    -- PYTHON SPECIFIC
+    use 'ookull/behave-integration.vim'
 
 --    use {'scalameta/coc-metals', run = 'yarn install --rfrozen-lockfile'}
 
