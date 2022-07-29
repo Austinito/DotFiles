@@ -15,7 +15,7 @@ require("settings.lsp").setup()
 require("settings.statusline")
 require("settings.functions")
 
-require("renamer").setup()
+require("renamer").setup({})
 --vim.lsp.set_log_level('trace')
 
 opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
@@ -67,6 +67,7 @@ map("n", "<leader>.", "<cmd>bprevious<CR>")
 map("n", "<leader><TAB>",[[<cmd> lua require("telescope.builtin").keymaps()<CR>]])
 --map("n", "<leader>F", "<cmd>Files<CR>")
 map("n", "<leader>F", [[<cmd> lua require("telescope.builtin").find_files({hidden=true})<CR>]])
+map("n", "<leader>B", [[<cmd> lua require("telescope.builtin").buffers()<CR>]])
 
 -- Git Worktree
 -- show the worktre
@@ -79,7 +80,7 @@ map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-map("n", "<leader>rn", [[<cmd>lua require("renamer").rename()<CR>]])
+map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
 map("n", "<leader><space>", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 map("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
@@ -123,6 +124,7 @@ cmd [[set guicursor=a:block-blinkon0]]
 cmd [[set clipboard+=unnamedplus]]
 cmd [[set formatoptions-=cro]]
 cmd [[let NERDDefaultAlign='start']]
+vim.opt_global.shortmess:remove("F")
 
 -- when working with mardown files, we want wrap enabled.
 cmd [[autocmd FileType markdown set wrap]]

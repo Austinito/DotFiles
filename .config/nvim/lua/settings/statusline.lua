@@ -2,7 +2,7 @@ local api = vim.api
 local opt = vim.opt
 
 local function get_branch()
-    local name = api.nvim_call_function("fugitive#head", {})
+    local name = api.nvim_call_function("FugitiveHead", {})
     if name and name ~= "" then
         return "  " .. name .. " "
     else
