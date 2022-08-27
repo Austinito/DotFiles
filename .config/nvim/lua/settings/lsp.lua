@@ -1,4 +1,6 @@
 local M = {}
+local functions = require "settings.functions"
+local map = functions.map
 
 M.setup = function()
     local lsp_config = require('lspconfig')
@@ -30,15 +32,28 @@ M.setup = function()
     --        vim.cmd([[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
     --    end
 
+    local on_attach = function(_, bufnr)
+        -- LSP agnostic mappings
+        map("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
+        map("n", "<C-k>", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
+        map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
+        map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
+        map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
+        map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
+        map("n", "<leader><space>", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
+        map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
+        map("n", "<leader>f", [[<cmd>lua vim.lsp.buf.formatting({ async = true })<CR>]])
+
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    end
+
     -- SUMNEKO LUA CONFIG -----------------------------------------------------
     local runtime_path = vim.split(package.path, ';')
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
-    local sumneko_binary_path = vim.fn.exepath('lua-language-server')
-    local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ':h:h:h')
 
     lsp_config.sumneko_lua.setup {
-        --        cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"};
+        on_attach = on_attach,
         settings = {
             Lua = {
                 runtime = {
@@ -67,25 +82,6 @@ M.setup = function()
     lsp_config.java_language_server.setup {
         cmd = { 'java-language-server' }
     }
-
-    local on_attach = function(client, _)
-
-        if client.resolved_capabilities.document_formatting then
-            vim.api.nvim_command [[au BufWritePre <buffer> lua vim.lsp.buf.formatting()]]
-        elseif client.resolved_capabilities.document_range_formatting then
-            vim.api.nvim_command [[au BufWritePre <buffer> lua vim.lsp.buf.range_formatting()]]
-        end
-
-        if client.resolved_capabilities.document_highlight then
-            vim.api.nvim_exec([[
-        augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]]   , false)
-        end
-    end
 
     local function make_config()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
