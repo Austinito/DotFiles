@@ -50,26 +50,30 @@ map("n", "<leader><cr>", "<cmd>source $MYVIMRC<CR><cmd>lua print('sourced.')<CR>
 map("n", "<leader>vrc", "<cmd>edit $MYVIMRC<CR>")
 
 map("n", "Q", [[<cmd>lua require("settings.functions").toggle_quickfix()<CR>]])
+map("n", "qn", [[<cmd>cnext<CR>]])
+map("n", "qp", [[<cmd>cprev<CR>]])
 
 -- Directory Navigation
-map("n", "_", "<cmd>Ex $PWD<CR>")
+map("n", "-", "<cmd>Explore<CR>")
+map("n", "_", "<cmd>Explore $PWD<CR>")
 
 -- Buffer Navigation
-map("n", "<leader>x", "<cmd>bprevious <BAR> bdelete #<CR>")
-map("n", "<leader>n", "<cmd>enew<CR>")
-map("n", "<leader>,", "<cmd>bnext<CR>")
-map("n", "<leader>.", "<cmd>bprevious<CR>")
+map("n", '<leader>x', '<cmd>bprevious <BAR> bdelete #<CR>')
+map("n", '<leader>n', '<cmd>enew<CR>')
+map("n", '<leader>,', '<cmd>bnext<CR>')
+map("n", '<leader>.', '<cmd>bprevious<CR>')
 
 -- Fuzzy Finder
-map("n", "<leader><TAB>", [[<cmd> lua require("telescope.builtin").keymaps()<CR>]])
-map("n", "<leader>sf", [[<cmd> lua require("telescope.builtin").find_files({hidden=true})<CR>]])
-map("n", "<leader>sb", [[<cmd> lua require("telescope.builtin").buffers()<CR>]])
-
----- Greps
-map("n", "<leader>gs", [[<cmd lua require("telescope.builtin").live_grep()<CR>]])
+map("n", "<leader><TAB>", [[<cmd> lua require('telescope.builtin').keymaps()<CR>]])
+map("n", "<leader>sf", [[<cmd> lua require('telescope.builtin').find_files({hidden=true})<CR>]])
+map("n", "<leader>sb", [[<cmd> lua require('telescope.builtin').git_branches()<CR>]])
+map("n", "<leader>sB", [[<cmd> lua require('telescope.builtin').buffers()<CR>]])
+map("n", "<leader>sg", [[<cmd> lua require('telescope.builtin').live_grep()<CR>]])
 
 -- Git Worktree
 -- show the worktre
+map("n", "<leader>sw", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+map("n", "<leader>aw", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
 map("n", "<leader>sw", [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
 map("n", "<leader>aw", [[<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]])
 
@@ -89,7 +93,7 @@ map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 map("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
 --map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>") Moved to lsp
-map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
+--map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
 
 -- temporary
 --
@@ -132,8 +136,8 @@ cmd [[autocmd FileType markdown set wrap]]
 
 -- LSP
 --autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
-cmd [[augroup lsp
-autocmd!
-autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
-autocmd FileType scala autocmd BufWritePre lua vim.lsp.buf.formating_sync()
-augroup end]]
+--cmd [[augroup lsp
+--autocmd!
+--autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)
+--autocmd FileType scala autocmd BufWritePre lua vim.lsp.buf.formating_sync()
+--augroup end]]

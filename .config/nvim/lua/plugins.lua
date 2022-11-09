@@ -29,13 +29,14 @@ return require('packer').startup(function(use)
             { "hrsh7th/cmp-vsnip" },
             { "hrsh7th/vim-vsnip" },
             { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            { "L3MON4D3/LuaSnip" },
         }
     }
+
     --    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-    --    use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
     use 'preservim/nerdcommenter'
-    use { 'filipdutescu/renamer.nvim', requires = { "nvim-lua/planary.nvim" } }
+    use { 'filipdutescu/renamer.nvim', requires = { "nvim-lua/plenary.nvim" } }
     use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
 
     -- PYTHON SPECIFIC
