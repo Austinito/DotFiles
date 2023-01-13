@@ -38,7 +38,8 @@ ZSH_THEME="garyblessington"
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -f "$HOME/.config/work/bootup/aliases.zsh" ]] && source "$HOME/.config/work/bootup/aliases.zsh"
+eval "$(brew shellenv)"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
