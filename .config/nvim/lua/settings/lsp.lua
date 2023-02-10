@@ -30,7 +30,7 @@ M.setup = function()
     Metals_config.settings = {
         serverProperties = {
             "-Xms8G",
-            "-Xmx12G",
+            "-Xmx12G"
         },
         ammoniteJvmProperties = { "-Xmx1G" },
         showImplicitArguments = true,

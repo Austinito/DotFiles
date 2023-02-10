@@ -100,23 +100,22 @@ map("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
 map("n", "<leader>oi", "<cmd>lua require('scalaimport').organize_imports()<CR>")
 map("n", "<leader>tr", "<cmd>lua package.loaded.ts = nil<cr>")
 map("n", "<leader>tt", "<cmd>lua require 'ts-import'.tf()<cr>")
+map("n", "<leader><leader>j", "<cmd>lua require('jenkinsfile_linter').validate()<CR>")
+require('jenkinsfile_linter')
 --
 --
 --#region
 ------------------------------------
 ---- COMMANDS ----------------------
 ------------------------------------
--- Autocmd to trim whitespace
-vim.api.nvim_exec(
-    [[
-function! TrimWhiteSpace()
+-- function to trim all trailing whitespace in the file without moving the cursor
+cmd [[function! TrimWhiteSpace()
   %s/\s*$//
   ''
-endfunction
-autocmd FileType * autocmd BufWritePre <buffer> call TrimWhiteSpace()
-]]   ,
-    false
-)
+  endfunction]]
+
+-- Automatically trim trailing whitespace on save
+cmd [[autocmd FileType * autocmd BufWritePre <buffer> call TrimWhiteSpace()]]
 
 ------------------------------------
 ---- LAST MINUTE OVERRIDES ---------
