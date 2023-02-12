@@ -32,6 +32,9 @@ return require('packer').startup(function(use)
             { "L3MON4D3/LuaSnip" },
         }
     }
+    use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
+
+    use 'github/copilot.vim'
 
     --    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
 

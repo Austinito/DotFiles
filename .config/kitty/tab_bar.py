@@ -32,3 +32,31 @@ def draw_tab(
         screen.draw(" ")
     end = screen.cursor.x
     return end
+
+# def draw(canvas, tab_bar, layout, style, tab_data, selected_tab, current_window):
+#     # Iterate over the tabs
+#     for i, tab in enumerate(tab_data):
+#         # Calculate the position and size of the tab
+#         x = tab_left(tab_bar, layout, style, tab_data, tab, current_window)
+#         y = tab_top(tab_bar, layout, style, tab_data, tab, current_window)
+#         w = tab_width(tab_bar, layout, style, tab_data, tab, current_window)
+#         h = tab_height(tab_bar, layout, style, tab_data, tab, current_window)
+
+#         # Set the fill color based on whether the tab is selected or not
+#         if i == selected_tab:
+#             fill_color = style.tab_bar_selected_tab_color
+#         else:
+#             fill_color = style.tab_bar_unselected_tab_color
+
+#         # Draw the tab background
+#         canvas.fill_rect(x, y, w, h, fill_color)
+
+#         # Draw the tab name
+#         canvas.draw_text(tab.name, style.tab_bar_font, style.tab_bar_text_color, x=x, y=y)
+
+#         # Check for a bell notification
+#         if tab.bell:
+#             # Display the bell notification
+#             notification_text = f"Bell on tab {i + 1}"
+#             notification_x = x + (w - len(notification_text) * style.tab_bar_font.size) / 2
+#             canvas.draw_text(notification_text, style.tab_bar_font, style.tab_bar_bell_color, x=notification_x, y=y)

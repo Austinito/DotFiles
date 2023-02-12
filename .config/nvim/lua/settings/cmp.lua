@@ -19,20 +19,20 @@ M.setup = function ()
             ['<C-u>'] = cmp.mapping.scroll_docs(-4),
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
             ["<CR>"] = cmp.mapping.confirm({ select = true }),
-            ["<Tab>"] = function(fallback)
-                if cmp.visible() then
-                    cmp.mapping.select_next_item()
-                else
-                    fallback()
-                end
-            end,
-            ["<S-Tab>"] = function (fallback)
-                if cmp.visible() then
-                    cmp.mapping.select_prev_item()
-                else
-                    fallback()
-                end
-            end,
+--            ["<Tab>"] = function(fallback)
+--                if cmp.visible() then
+--                    cmp.mapping.select_next_item()
+--                else
+--                    fallback()
+--                end
+--            end,
+--            ["<S-Tab>"] = function (fallback)
+--                if cmp.visible() then
+--                    cmp.mapping.select_prev_item()
+--                else
+--                    fallback()
+--                end
+--            end,
         },
     })
 end
