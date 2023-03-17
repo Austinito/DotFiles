@@ -5,7 +5,6 @@ return require('packer').startup(function(use)
 
     use 'morhetz/gruvbox'
     use 'geverding/vim-hocon'
-    use 'jiangmiao/auto-pairs'
     use 'junegunn/goyo.vim'
     use {
         'nvim-telescope/telescope.nvim',

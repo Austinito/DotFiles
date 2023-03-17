@@ -80,20 +80,10 @@ map("n", "<leader>aw", [[<cmd>lua require('telescope').extensions.git_worktree.c
 -- LSP
 map("n", "<C-K>", "<cmd>lua require('metals').hover_worksheet()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
---map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")Moved to lsp
---map("n", "<C-k>", "<cmd>lua vim.lsp.buf.hover()<CR>")Moved to lsp
---map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")Moved to lsp
---map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")Moved to lsp
---map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])Moved to lsp
---map("n", "<leader><space>", "<cmd>lua vim.lsp.buf.code_action()<CR>") Moved to lsp
---map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>") Moved to lsp
---map("n", "<leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>") DEPRECATED
 
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 map("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
---map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>") Moved to lsp
---map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>")
 
 -- temporary
 --
