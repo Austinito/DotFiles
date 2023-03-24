@@ -87,38 +87,6 @@ M.setup = function()
         group = nvim_metals_group,
     })
 
-    -- SUMNEKO LUA CONFIG -----------------------------------------------------
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    lsp_config.sumneko_lua.setup {
-        on_attach = on_attach,
-        settings = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                    -- Setup your lua path
-                    path = runtime_path,
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = { 'vim', 'string', 'pairs', 'ipairs', 'print', 'table', 'next' },
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                    enable = false,
-                },
-            },
-        },
-        capabilities = capabilities,
-    }
-
     lsp_config.java_language_server.setup {
         cmd = { 'java-language-server' }
     }
@@ -146,7 +114,7 @@ M.setup = function()
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'java_language_server' }
+    local servers = { 'pyright', 'java_language_server', 'lua_ls' }
     for _, server in ipairs(servers) do
         local config = make_config()
         if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
