@@ -101,7 +101,6 @@ map("n", "<leader>oi", "<cmd>lua require('scalaimport').organize_imports()<CR>")
 map("n", "<leader>tr", "<cmd>lua package.loaded.ts = nil<cr>")
 map("n", "<leader>tt", "<cmd>lua require 'ts-import'.tf()<cr>")
 map("n", "<leader><leader>j", "<cmd>lua require('jenkinsfile_linter').validate()<CR>")
-require('jenkinsfile_linter')
 --
 --
 --#region

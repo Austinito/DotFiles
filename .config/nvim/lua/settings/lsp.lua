@@ -5,8 +5,8 @@ local map = functions.map
 M.setup = function()
     local lsp_config = require('lspconfig')
     -- add additional capabilities supported by nvim-cmp
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    --    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
     local lsp_group = vim.api.nvim_create_augroup("lsp", { clear = true })
     local on_attach = function(_, bufnr)
         -- LSP agnostic mappings
@@ -40,13 +40,12 @@ M.setup = function()
         }
     }
     Metals_config.init_options.statusBarProvider = "on"
-    Metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    Metals_config.capabilities = capabilities
 
     Metals_config.on_attach = function(client, bufnr)
         on_attach(client, bufnr)
 
         -- Metals mappings
-        map("v", "K", [[<Esc><cmd>lua require("metals").type_of_range()<CR>]])
         map("n", "<leader>ws", [[<cmd>lua require("metals").hover_worksheet({ border = "single" })<CR>]])
         map("n", "<leader>tt", [[<cmd>lua require("metals.tvp").toggle_tree_view()<CR>]])
         map("n", "<leader>tr", [[<cmd>lua require("metals.tvp").reveal_in_tree()<CR>]])
@@ -87,24 +86,17 @@ M.setup = function()
         group = nvim_metals_group,
     })
 
-    -- SUMNEKO LUA CONFIG -----------------------------------------------------
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    lsp_config.sumneko_lua.setup {
-        on_attach = on_attach,
+    --    NEW LUA SETUP
+    lsp_config.lua_ls.setup {
         settings = {
             Lua = {
                 runtime = {
                     -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                     version = 'LuaJIT',
-                    -- Setup your lua path
-                    path = runtime_path,
                 },
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
-                    globals = { 'vim', 'string', 'pairs', 'ipairs', 'print', 'table', 'next' },
+                    globals = { 'vim' },
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
@@ -117,6 +109,7 @@ M.setup = function()
             },
         },
         capabilities = capabilities,
+        on_attach = on_attach,
     }
 
     lsp_config.java_language_server.setup {
@@ -133,7 +126,7 @@ M.setup = function()
             }
         }
         return {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
+            capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities),
             on_attach = on_attach,
         }
     end

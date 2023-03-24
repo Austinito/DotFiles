@@ -37,11 +37,13 @@ ZSH_THEME="garyblessington"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
+machine_specific_config_dir="$HOME/.config/machine_specific/bootup/"
 
-work_config_dir="$HOME/.config/work/bootup/"
-for file in $work_config_dir/*.zsh; do
-    source $file
-done
+if [[ -d "$machine_specific_config_dir" ]]; then
+  for file in "$machine_specific_config_dir"/*.zsh; do
+    source "$file"
+  done
+fi
 eval "$(brew shellenv)"
 
 # Uncomment the following line to disable auto-setting terminal title.
