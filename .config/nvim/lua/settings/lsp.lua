@@ -114,7 +114,7 @@ M.setup = function()
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'java_language_server', 'lua_ls' }
+    local servers = { 'pyright', 'java_language_server', 'lua_ls', 'tsserver', 'vuels' }
     for _, server in ipairs(servers) do
         local config = make_config()
         if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
