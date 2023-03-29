@@ -5,8 +5,7 @@ local map = functions.map
 M.setup = function()
     local lsp_config = require('lspconfig')
     -- add additional capabilities supported by nvim-cmp
-    local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
     local lsp_group = vim.api.nvim_create_augroup("lsp", { clear = true })
     local on_attach = function(_, bufnr)
         -- LSP agnostic mappings
@@ -86,32 +85,6 @@ M.setup = function()
         group = nvim_metals_group,
     })
 
-    --    NEW LUA SETUP
-    lsp_config.lua_ls.setup {
-        settings = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = { 'vim' },
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                    enable = false,
-                },
-            },
-        },
-        capabilities = capabilities,
-        on_attach = on_attach,
-    }
-
     lsp_config.java_language_server.setup {
         cmd = { 'java-language-server' }
     }
@@ -126,7 +99,7 @@ M.setup = function()
             }
         }
         return {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities),
+            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
             on_attach = on_attach,
         }
     end
@@ -139,7 +112,7 @@ M.setup = function()
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'java_language_server'}
+    local servers = { 'pyright', 'java_language_server', 'lua_ls', 'tsserver', 'vuels' }
     for _, server in ipairs(servers) do
         local config = make_config()
         if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
