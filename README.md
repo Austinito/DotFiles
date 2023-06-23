@@ -4,7 +4,7 @@ Austinito's DotFiles
 followed the instructions here:
 https://www.atlassian.com/git/tutorials/dotfiles
 
-## Getting Neo Vim to run correctly
+## Getting NeoVim to run correctly
 
 You're going to need to get Packer Added, so that you can compile your plugins before `nvim` command will work properly.
 

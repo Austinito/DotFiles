@@ -1,26 +1,23 @@
-local api = vim.api
-local opt = vim.opt
-
 local function get_branch()
-    local name = api.nvim_call_function("FugitiveHead", {})
+    local name = vim.api.nvim_call_function("FugitiveHead", {})
     if name and name ~= "" then
-        return "  " .. name .. " "
+        return "  (" .. name .. ") "
     else
         return ""
     end
 end
 
 local function get_modified()
-  local isModified = opt.modified:get()
-  if isModified then
-    return "  "
-  else
-    return ""
-  end
+    local isModified = vim.opt.modified:get()
+    if isModified then
+        return "  "
+    else
+        return ""
+    end
 end
 
 local function get_readonly()
-    local isReadOnly = opt.readonly:get()
+    local isReadOnly = vim.opt.readonly:get()
     if isReadOnly then
         return "  "
     else
@@ -29,12 +26,12 @@ local function get_readonly()
 end
 
 local function err_count(severity)
-  local diags = vim.diagnostic.get(api.nvim_get_current_buf(), { severity = severity })
-  if not next(diags) then
-    return ""
-  else
-    return " " .. #diags .. " "
-  end
+    local diags = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = severity })
+    if not next(diags) then
+        return ""
+    else
+        return " " .. #diags .. " "
+    end
 end
 
 local function metals_status()
@@ -58,5 +55,4 @@ function Austinito_custom_status_line()
         "%c ",
         "%"
     })
-
 end

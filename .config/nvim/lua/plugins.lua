@@ -3,22 +3,21 @@
 return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim', opt = true }
 
+    -- THEMES AND UI
     use 'morhetz/gruvbox'
     use 'geverding/vim-hocon'
     use 'junegunn/goyo.vim'
+    use 'powerline/powerline-fonts'
+    use 'ryanoasis/vim-devicons'
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = {
-            { "nvim-lua/popup.nvim" },
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope-fzy-native.nvim" },
-        }
+        'rose-pine/neovim',
+        as = 'rose-pine',
+        config = function()
+            vim.cmd('colorscheme rose-pine')
+        end
     }
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'nvim-treesitter/nvim-treesitter-context'
-    use 'nvim-treesitter/playground'
 
-    -- LSP STUFFS ------------------------------------------------------------
+    -- LSP STUFFS
     use 'neovim/nvim-lspconfig'
     use {
         'hrsh7th/nvim-cmp',
@@ -32,25 +31,38 @@ return require('packer').startup(function(use)
             { "L3MON4D3/LuaSnip" },
         }
     }
+    use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+
+    -- AI TOOLS
     use 'github/copilot.vim'
+
+    -- PYTHON SPECIFIC
+    use 'python-mode/python-mode'
+    use 'ookull/behave-integration.vim'
+
+    -- GIT
+    use 'tpope/vim-fugitive'
+
+    -- UTILITIES
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            { "nvim-lua/popup.nvim" },
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope-fzy-native.nvim" },
+        }
+    }
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/nvim-treesitter-context'
+    use 'nvim-treesitter/playground'
 
     use 'preservim/nerdcommenter'
     use { 'filipdutescu/renamer.nvim', requires = { "nvim-lua/plenary.nvim" } }
-    use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
-
-    -- PYTHON SPECIFIC
-    use 'ookull/behave-integration.vim'
-
-    use 'theprimeagen/git-worktree.nvim'
-    use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-vinegar'
+    use 'jellyapple102/flote.nvim'
 
-    -- Status Bar
-    use 'powerline/powerline-fonts'
-    use 'ryanoasis/vim-devicons'
-
-    -- Mine?
+    -- MINE?
     use 'Austinito/scalaimport'
 end
 )

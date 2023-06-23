@@ -1,11 +1,3 @@
-local function map(mode, key, value, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, key, value, options)
-end
-
 local function toggle_quickfix()
     for _, win in pairs(vim.fn.getwininfo()) do
         if win.quickfix == 1 then
@@ -25,8 +17,18 @@ local function clear_registers()
     ]]
 end
 
+local function load_lua_files(path)
+    local files = vim.fn.globpath(path, '*.lua', true, false)
+    for _, file in ipairs(files) do
+        local ok, err = pcall(dofile, file)
+        if not ok then
+            print("Error loading " .. file .. ": " .. err)
+        end
+    end
+end
+
 return {
-    map = map,
     toggle_quickfix = toggle_quickfix,
-    clear_registers = clear_registers
+    clear_registers = clear_registers,
+    load_lua_files = load_lua_files,
 }

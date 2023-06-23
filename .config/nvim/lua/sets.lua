@@ -25,7 +25,11 @@ o.writebackup = false
 -- opt_global.shortmess:remove("F"):append("c")
 opt_global.shortmess:append("c")
 g.tmux_navigator_no_mappings = 1
-g.mapleader = ' '
 g.markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'scala', 'lua' }
 g.netrw_rmdir_cmd = 'ssh USEPORT HOSTNAME rm -r'
 g.netrw_liststyle = 3
+g.laststatus=3
+
+g.python3_host_prog = '~/.virtualenvs/neovim-env/bin/python'
+g.pymode_rope_lookup_project = 0
+g.pymode_options_max_line_length = 120
