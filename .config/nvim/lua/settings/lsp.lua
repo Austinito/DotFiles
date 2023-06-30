@@ -33,7 +33,8 @@ M.setup = function()
         excludedPackages = {
             "akka.actor.typed.javadsl",
             "com.github.swagger.akka.javadsl"
-        }
+        },
+        scalafmtConfigPath = ".scalafmt.conf",
     }
     Metals_config.init_options.statusBarProvider = "on"
     Metals_config.capabilities = capabilities
