@@ -122,17 +122,41 @@ M.setup = function()
     end
 
     local server_configs = {
+        -- java_language_server
+        -- We need to use custom script to start the server
         ['java_language_server'] = {
             cmd = { 'lang_server_mac.sh' }
-        }
+        },
+        -- tsserver
+        -- We want to overwrite the format capability to use prettier
+        -- overwrite the on_attach function to use the one we defined, except for the
+        -- formatting part... which will be handled by prettier
+        ['tsserver'] = {
+            settings = {
+                documentFormatting = false
+            },
+            on_attach = function(_, bufnr)
+                map("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
+                map("n", "<C-k>", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
+                map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
+                map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
+                map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
+                map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
+                map("n", "<leader><space>", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
+                map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
 
+                map("n", "<leader>f", [[<cmd>silent %!prettier --stdin-filepath %<CR>]])
+                map("v", "<leader>f", [[<cmd>echo "TODO: Support view formatting for prettier"<CR>]])
+                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+            end
+        }
     }
 
     -- ALL OTHERS
     local servers = { 'pyright', 'java_language_server', 'tsserver', 'vuels' }
     for _, server in ipairs(servers) do
         local config = make_config()
-        if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
+        if server_configs[server] then config = vim.tbl_extend('force', config, server_configs[server]) end
         lsp_config[server].setup(config)
     end
 

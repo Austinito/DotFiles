@@ -3,7 +3,6 @@
 return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim', opt = true }
 
-    -- THEMES AND UI
     use 'geverding/vim-hocon'
     use 'junegunn/goyo.vim'
     use 'powerline/powerline-fonts'

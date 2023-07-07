@@ -43,4 +43,6 @@ vim.keymap.set("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>"
 
 -- temporary
 vim.keymap.set("n", "<leader>oi", "<cmd>lua require('scalaimport').organize_imports()<CR>")
+vim.keymap.set("n", "gp", "<cmd>silent %!prettier --stdin-filepath %<CR>")
+
 --#region
