@@ -41,6 +41,9 @@ vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
 
+-- Terminal
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
 -- temporary
 vim.keymap.set("n", "<leader>oi", "<cmd>lua require('scalaimport').organize_imports()<CR>")
 vim.keymap.set("n", "gp", "<cmd>silent %!prettier --stdin-filepath %<CR>")
