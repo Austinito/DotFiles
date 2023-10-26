@@ -136,17 +136,17 @@ M.setup = function()
                 documentFormatting = false
             },
             on_attach = function(_, bufnr)
-                map("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
-                map("n", "<C-k>", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
-                map("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
-                map("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
-                map("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
-                map("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
-                map("n", "<leader><space>", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
-                map("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
+                vim.keymap.set("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<CR>]])
+                vim.keymap.set("n", "<C-k>", [[<cmd>lua vim.lsp.buf.hover()<CR>]])
+                vim.keymap.set("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<CR>]])
+                vim.keymap.set("n", "gr", [[<cmd>lua vim.lsp.buf.references()<CR>]])
+                vim.keymap.set("n", "<leader>sh", [[<cmd>lua vim.lsp.buf.signature_help()<CR>]])
+                vim.keymap.set("n", "<leader>rn", [[<cmd>lua vim.lsp.buf.rename()<CR>]])
+                vim.keymap.set("n", "<leader><space>", [[<cmd>lua vim.lsp.buf.code_action()<CR>]])
+                vim.keymap.set("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
 
-                map("n", "<leader>f", [[<cmd>silent %!prettier --stdin-filepath %<CR>]])
-                map("v", "<leader>f", [[<cmd>echo "TODO: Support view formatting for prettier"<CR>]])
+                vim.keymap.set("n", "<leader>f", [[<cmd>silent %!prettier --stdin-filepath %<CR>]])
+                vim.keymap.set("v", "<leader>f", [[<cmd>echo "TODO: Support view formatting for prettier"<CR>]])
                 vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
             end
         }
