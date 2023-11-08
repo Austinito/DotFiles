@@ -55,5 +55,7 @@ vim.cmd("set formatoptions-=cro")
 vim.cmd("let NERDDefaultAlign='start'")
 vim.opt_global.shortmess:remove("F")
 
+require('solarized').set()
+
 -- when working with mardown files, we want wrap enabled.
 vim.cmd [[autocmd FileType markdown set wrap]]

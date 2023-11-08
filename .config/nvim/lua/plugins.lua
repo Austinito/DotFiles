@@ -7,13 +7,15 @@ return require('packer').startup(function(use)
     use 'junegunn/goyo.vim'
     use 'powerline/powerline-fonts'
     use 'ryanoasis/vim-devicons'
-    use {
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    }
+--    use 'projekt0n/github-nvim-theme'
+    use 'shaunsingh/solarized.nvim'
+--    use {
+--        'rose-pine/neovim',
+--        as = 'rose-pine',
+--        config = function()
+--            vim.cmd('colorscheme rose-pine-dawn')
+--        end
+--    }
 
     -- LSP STUFFS
     use 'neovim/nvim-lspconfig'
