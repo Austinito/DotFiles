@@ -26,7 +26,6 @@ o.writebackup = false
 opt_global.shortmess:append("c")
 g.tmux_navigator_no_mappings = 1
 g.markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'scala', 'lua' }
-g.netrw_rmdir_cmd = 'ssh USEPORT HOSTNAME rm -r'
 g.netrw_liststyle = 3
 g.laststatus=3
 

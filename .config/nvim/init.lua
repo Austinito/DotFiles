@@ -8,7 +8,6 @@ require("settings.cmp").setup()
 require("settings.lsp").setup()
 require("settings.statusline")
 require("settings.functions")
-require("flote").setup()
 
 require("renamer").setup({})
 --vim.lsp.set_log_level('trace')
@@ -55,3 +54,8 @@ vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set formatoptions-=cro")
 vim.cmd("let NERDDefaultAlign='start'")
 vim.opt_global.shortmess:remove("F")
+
+require('solarized').set()
+
+-- when working with mardown files, we want wrap enabled.
+vim.cmd [[autocmd FileType markdown set wrap]]
