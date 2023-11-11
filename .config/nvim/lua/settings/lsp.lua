@@ -131,6 +131,7 @@ M.setup = function()
             handlers = {
                 ['textDocument/definition'] = require('csharpls_extended').handler
             }
+        },
         -- tsserver
         -- We want to overwrite the format capability to use prettier
         -- overwrite the on_attach function to use the one we defined, except for the
