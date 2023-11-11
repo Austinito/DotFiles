@@ -124,18 +124,21 @@ M.setup = function()
     local server_configs = {
         ['java_language_server'] = {
             cmd = { 'lang_server_mac.sh' }
+        },
+        ['chsarp_ls'] = {
+            handlers = {
+                ['textDocument/definition'] = require('csharpls_extended').handler
+            }
         }
-
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'java_language_server', 'tsserver', 'vuels' }
+    local servers = { 'pyright', 'java_language_server', 'tsserver', 'vuels', 'csharp_ls' }
     for _, server in ipairs(servers) do
         local config = make_config()
-        if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
         lsp_config[server].setup(config)
+        if server_configs[server] then config = vim.tbl_extend('error', config, server_configs[server]) end
     end
-
 end
 
 return M

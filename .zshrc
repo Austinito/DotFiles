@@ -44,7 +44,6 @@ if [[ -d "$machine_specific_config_dir" ]]; then
     source "$file"
   done
 fi
-eval "$(brew shellenv)"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"

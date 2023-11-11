@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
             { "L3MON4D3/LuaSnip" },
         }
     }
+    use 'Decodetalkers/csharpls-extended-lsp.nvim'
     use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
 
     -- AI TOOLS
