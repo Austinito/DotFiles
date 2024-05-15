@@ -73,16 +73,12 @@ M.setup = function()
 
     local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "scala", "sbt", "java" },
+        pattern = { "scala", "sbt" },
         callback = function()
             require("metals").initialize_or_attach(Metals_config)
         end,
         group = nvim_metals_group,
     })
-
-    lsp_config.java_language_server.setup {
-        cmd = { 'java-language-server' }
-    }
 
     lsp_config.lua_ls.setup {
         settings = {
@@ -124,13 +120,13 @@ M.setup = function()
     local server_configs = {
         -- java_language_server
         -- We need to use custom script to start the server
-        ['java_language_server'] = {
-            cmd = { 'lang_server_mac.sh' }
-        },
         ['chsarp_ls'] = {
             handlers = {
                 ['textDocument/definition'] = require('csharpls_extended').handler
             }
+        },
+        [ 'clangd' ] = {
+            offsetEncoding = 'utf-16'
         },
         -- tsserver
         -- We want to overwrite the format capability to use prettier
@@ -158,7 +154,7 @@ M.setup = function()
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'java_language_server', 'tsserver', 'vuels', 'csharp_ls' }
+    local servers = { 'pyright', 'jdtls', 'tsserver', 'vuels', 'csharp_ls', 'clangd'}
     for _, server in ipairs(servers) do
         local config = make_config()
         if server_configs[server] then config = vim.tbl_extend('force', config, server_configs[server]) end

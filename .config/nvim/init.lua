@@ -18,6 +18,10 @@ require("renamer").setup({})
 require("configs.treesitter")
 require("configs.telescope")
 vim.cmd("hi! StatusLine guifg=#5C6370 guibg=#282c34")
+vim.cmd("highlight DiagnosticError guifg=#FF0000 gui=bold")
+vim.cmd("highlight DiagnosticWarn guifg=#FFD700 gui=italic")
+vim.cmd("highlight NormalFloat guibg=#282c34 guifg=#5C6370")
+vim.cmd("highlight FloatBorder guibg=#1e1e1e guifg=#c0c0c0")
 vim.cmd("hi! link StatusError DiagnosticError")
 vim.cmd("hi! link StatusWarn DiagnosticWarn")
 vim.opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
@@ -45,6 +49,16 @@ vim.cmd("autocmd FileType markdown set wrap")
 -- Automtically redraw status when there's a change in statusline
 vim.cmd("autocmd User StatusLine redrawstatus")
 
+-- Toggle Autocompletion
+vim.api.nvim_create_user_command('CmpToggle', function()
+    require('cmp').setup.buffer { enabled = not require('cmp').config.enabled }
+end, {})
+--vim.api.nvim_create_user_command("ToggleAutocomplete", {
+--  short_name = "tac",
+--  nargs = 0,
+--  cmd = "lua require('settings.functions').toggle_autocomplete()",
+--})
+
 ------------------------------------
 ---- LAST MINUTE OVERRIDES ---------
 ------------------------------------
@@ -55,7 +69,7 @@ vim.cmd("set formatoptions-=cro")
 vim.cmd("let NERDDefaultAlign='start'")
 vim.opt_global.shortmess:remove("F")
 
-require('solarized').set()
+--require('solarized').set()
 
 -- when working with mardown files, we want wrap enabled.
 vim.cmd [[autocmd FileType markdown set wrap]]

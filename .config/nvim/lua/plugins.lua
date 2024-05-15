@@ -7,15 +7,15 @@ return require('packer').startup(function(use)
     use 'junegunn/goyo.vim'
     use 'powerline/powerline-fonts'
     use 'ryanoasis/vim-devicons'
---    use 'projekt0n/github-nvim-theme'
+    --    use 'projekt0n/github-nvim-theme'
     use 'shaunsingh/solarized.nvim'
---    use {
---        'rose-pine/neovim',
---        as = 'rose-pine',
---        config = function()
---            vim.cmd('colorscheme rose-pine-dawn')
---        end
---    }
+    --    use {
+    --        'rose-pine/neovim',
+    --        as = 'rose-pine',
+    --        config = function()
+    --            vim.cmd('colorscheme rose-pine-dawn')
+    --        end
+    --    }
 
     -- LSP STUFFS
     use 'neovim/nvim-lspconfig'
@@ -33,9 +33,12 @@ return require('packer').startup(function(use)
     }
     use 'Decodetalkers/csharpls-extended-lsp.nvim'
     use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+    use 'p00f/clangd_extensions.nvim'
 
     -- AI TOOLS
-    use 'github/copilot.vim'
+--    use 'github/copilot.vim'
+    use 'Exafunction/codeium.vim'
+
 
     -- PYTHON SPECIFIC
     use 'python-mode/python-mode'

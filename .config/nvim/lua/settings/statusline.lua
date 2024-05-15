@@ -38,6 +38,14 @@ local function metals_status()
     return vim.g["metals_status"] or ""
 end
 
+--This will produce a 3 char long string:
+-- - '3/8' - third suggestion out of 8
+-- - '0' - Codeium returned no suggestions
+-- - '*' - waiting for suggestions
+local function codium_status()
+    return vim.api.nvim_call_function("codeium#GetStatusString", {})
+end
+
 function Austinito_custom_status_line()
     return table.concat({
         get_branch(),
@@ -49,7 +57,11 @@ function Austinito_custom_status_line()
         "%#StatusWarn#",
         err_count("Warn"),
         "%#StatusLine#",
+        "Metals: ",
         metals_status(),
+        "%=",
+        "Codeium: ",
+        codium_status(),
         "%=",
         "%l, ",
         "%c ",
