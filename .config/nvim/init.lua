@@ -4,27 +4,22 @@
 vim.cmd([[packadd packer.nvim]])
 require("plugins")
 require("sets")
+local functions = require("settings.functions")
+functions.load_configs("settings")
 require("settings.cmp").setup()
 require("settings.lsp").setup()
-require("settings.statusline")
-require("settings.functions")
-
 require("renamer").setup({})
 --vim.lsp.set_log_level('trace')
 
 ----------------------------------
 -- CONFIGURE PLUGINS -------------
 ----------------------------------
-require("configs.treesitter")
-require("configs.telescope")
-vim.cmd("hi! StatusLine guifg=#5C6370 guibg=#282c34")
+functions.load_configs("configs")
 vim.cmd("highlight DiagnosticError guifg=#FF0000 gui=bold")
 vim.cmd("highlight DiagnosticWarn guifg=#FFD700 gui=italic")
 vim.cmd("highlight NormalFloat guibg=#282c34 guifg=#5C6370")
 vim.cmd("highlight FloatBorder guibg=#1e1e1e guifg=#c0c0c0")
-vim.cmd("hi! link StatusError DiagnosticError")
-vim.cmd("hi! link StatusWarn DiagnosticWarn")
-vim.opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
+--vim.opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
 
 ------------------------------------
 ---- SETUP MAPPINGS ----------------
@@ -68,6 +63,10 @@ vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set formatoptions-=cro")
 vim.cmd("let NERDDefaultAlign='start'")
 vim.opt_global.shortmess:remove("F")
+
+-- Theme stuff
+vim.o.background = "dark" -- or "light"
+vim.cmd("colorscheme gruvbox")
 
 --require('solarized').set()
 
