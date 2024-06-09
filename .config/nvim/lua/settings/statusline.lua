@@ -29,14 +29,14 @@ end
 local function get_git_stats()
     -- Call `git diff --shortstat`
     local stats = vim.api.nvim_call_function("system", { "git diff --shortstat" })
-    if string.match(stats, "^%d+%D+%d+%D+%d+") then
+    if string.match(stats, "[^%d]+%D+%d+%D+%d+") then
         stats = string.gsub(stats, "(%d+)%D+(%d+)%D+(%d+)%D+", "(+%2, -%3)")
-    elseif string.match(stats, "^%d+%D+%d+ insertion") then
+    elseif string.match(stats, "[^%d]+%D+%d+ insertion") then
         stats = string.gsub(stats, "(%d+)%D+(%d+)%D+", "(+%2)")
-    elseif string.match(stats, "^%d+%D+%d+ deletion") then
+    elseif string.match(stats, "[^%d]+%D+%d+ deletion") then
         stats = string.gsub(stats, "(%d+)%D+(%d+)%D+", "(-%2)")
-    else
-        stats = EmptyString
+--    else
+--        stats = EmptyString
     end
     return stats
 end
