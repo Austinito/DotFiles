@@ -41,7 +41,7 @@ vim.cmd("autocmd FileType * autocmd BufWritePre <buffer> call TrimWhiteSpace()")
 vim.cmd("autocmd FileType markdown set wrap")
 
 -- Automtically redraw status when there's a change in statusline
-vim.cmd("autocmd User StatusLine redrawstatus")
+--vim.cmd("autocmd User StatusLine redrawstatus")
 
 -- Toggle Autocompletion
 vim.api.nvim_create_user_command('CmpToggle', function()

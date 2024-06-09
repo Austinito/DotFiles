@@ -17,10 +17,12 @@ local EmptyString = ""
 --local EndBuffer = " "
 local EndBuffer = " "
 
+local dynamic_highlights = {}
+
 local function get_branch()
     local name = vim.api.nvim_call_function("FugitiveHead", {})
     if name and name ~= EmptyString then
-        return "  " .. name .. " "
+        return "  " .. name
     else
         return EmptyString
     end
@@ -46,9 +48,9 @@ local function get_git_info()
     if branchInfo ~= EmptyString then
         local gitStats = get_git_stats()
         if gitStats ~= EmptyString then
-            return branchInfo .. gitStats
+            return branchInfo .. gitStats .. " "
         else
-            return branchInfo
+            return branchInfo .. " "
         end
     else
         return EmptyString
@@ -73,6 +75,7 @@ local function get_readonly()
     end
 end
 
+-- Use this again (for errs and warnings)
 local function err_count(severity)
     local diags = vim.diagnostic.get(vim.api.nvim_get_current_buf(), { severity = severity })
     if not next(diags) then
@@ -82,6 +85,7 @@ local function err_count(severity)
     end
 end
 
+-- TODO: We want to show this section whenever the LSP is active (vs. just when status populated)
 local function metals_status()
     local status = vim.g["metals_status"]
     if status and status ~= EmptyString then
@@ -106,20 +110,18 @@ end
 
 -- Creates a merge between the two highlights
 local function separate_highlights(hl_name_1, hl_name_2)
-    local hl_1 = vim.api.nvim_get_hl(0, { name = hl_name_1 })
-    local hl_2 = vim.api.nvim_get_hl(0, { name = hl_name_2 })
-
-    local name = hl_name_1 .. hl_name_2
-    local highlight_cmd = "highlight " .. name .. " guibg=#" .. string.format("%x", hl_2["bg"]) .. " guifg=#" .. string.format("%x", hl_1["bg"])
-    vim.cmd(highlight_cmd)
-
+    local name = "STATUS_" .. hl_name_1 .. hl_name_2
+    if not dynamic_highlights[name]  then
+        local hl_1 = vim.api.nvim_get_hl(0, { name = hl_name_1 })
+        local hl_2 = vim.api.nvim_get_hl(0, { name = hl_name_2 })
+        local highlight_cmd = "highlight " .. name .. " guibg=#" .. string.format("%x", hl_2["bg"]) .. " guifg=#" .. string.format("%x", hl_1["bg"])
+        vim.cmd(highlight_cmd)
+        dynamic_highlights[name] = true
+    end
     return "%#" .. name .. "#" .. EndBuffer .. "%#" .. hl_name_2 .. "#"
 end
 
--- TODO: polish this up
--- Refreshing way too much
--- We should store the highlights, and not recreate them on every redraw
--- git stats broken?
+-- TODO: Refactor, make it look pretty
 function Austinito_custom_status_line()
     local statusLine = "";
     local codeium_info = codium_status()
@@ -144,8 +146,8 @@ function Austinito_custom_status_line()
         statusLine = statusLine .. separate_highlights("CodeiumStatus", "StatusBarColor") .. "%=:%l :%c %p%%%"
     end
 
-
     return statusLine
 end
 
+-- TODO: refreshing too much
 vim.opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
