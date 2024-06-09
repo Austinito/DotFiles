@@ -17,9 +17,8 @@ require("renamer").setup({})
 functions.load_configs("configs")
 vim.cmd("highlight DiagnosticError guifg=#FF0000 gui=bold")
 vim.cmd("highlight DiagnosticWarn guifg=#FFD700 gui=italic")
-vim.cmd("highlight NormalFloat guibg=#282c34 guifg=#5C6370")
-vim.cmd("highlight FloatBorder guibg=#1e1e1e guifg=#c0c0c0")
---vim.opt.statusline = "%!luaeval('Austinito_custom_status_line()')"
+vim.cmd("highlight NormalFloat guibg=#282C34 guifg=#5C6370")
+vim.cmd("highlight FloatBorder guibg=#1E1E1E guifg=#C0C0C0")
 
 ------------------------------------
 ---- SETUP MAPPINGS ----------------
