@@ -7,8 +7,9 @@ return require('packer').startup(function(use)
     use 'junegunn/goyo.vim'
     use 'powerline/powerline-fonts'
     use 'ryanoasis/vim-devicons'
+    use 'ellisonleao/gruvbox.nvim'
     --    use 'projekt0n/github-nvim-theme'
-    use 'shaunsingh/solarized.nvim'
+    --    use 'shaunsingh/solarized.nvim'
     --    use {
     --        'rose-pine/neovim',
     --        as = 'rose-pine',
@@ -39,6 +40,8 @@ return require('packer').startup(function(use)
 --    use 'github/copilot.vim'
     use 'Exafunction/codeium.vim'
 
+    -- Debug tools
+    use 'mfussenegger/nvim-dap'
 
     -- PYTHON SPECIFIC
     use 'python-mode/python-mode'

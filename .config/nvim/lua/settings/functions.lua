@@ -1,4 +1,6 @@
-local function toggle_quickfix()
+local M = {};
+
+M.toggle_quickfix = function()
     for _, win in pairs(vim.fn.getwininfo()) do
         if win.quickfix == 1 then
             vim.cmd('cclose')
@@ -9,26 +11,25 @@ local function toggle_quickfix()
 end
 
 
-local function clear_registers()
-    vim.cmd[[let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+M.clear_registers = function()
+    vim.cmd [[let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
     for r in regs
-      call setreg(r, [])
+        call setreg(r, [])
     endfor
     ]]
 end
 
-local function load_lua_files(path)
-    local files = vim.fn.globpath(path, '*.lua', true, false)
-    for _, file in ipairs(files) do
-        local ok, err = pcall(dofile, file)
-        if not ok then
-            print("Error loading " .. file .. ": " .. err)
+M.load_configs = function(path)
+    local config_path = vim.fn.stdpath('config') .. '/lua/' .. path
+    for _, file in ipairs(vim.fn.readdir(config_path)) do
+        if file:sub(-4) == '.lua' then
+            local module = path .. '.' .. file:sub(1, -5)
+            local loaded_module = require(module)
+            if type(loaded_module) == 'table' and loaded_module.setup then
+                loaded_module.setup()
+            end
         end
     end
 end
 
-return {
-    toggle_quickfix = toggle_quickfix,
-    clear_registers = clear_registers,
-    load_lua_files = load_lua_files,
-}
+return M
