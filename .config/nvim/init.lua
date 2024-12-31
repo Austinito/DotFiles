@@ -9,7 +9,7 @@ functions.load_configs("settings")
 require("settings.cmp").setup()
 require("settings.lsp").setup()
 require("renamer").setup({})
---vim.lsp.set_log_level('trace')
+-- vim.lsp.set_log_level('debug')
 
 ----------------------------------
 -- CONFIGURE PLUGINS -------------

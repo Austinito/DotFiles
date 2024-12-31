@@ -32,4 +32,9 @@ M.load_configs = function(path)
     end
 end
 
+M.openFileTree = function()
+    vim.cmd('Explore')
+end
+
+
 return M

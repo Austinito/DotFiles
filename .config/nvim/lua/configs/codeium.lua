@@ -4,5 +4,5 @@
 --    \ 'bash': v:false,
 --    \ 'typescript': v:true,
 --    \ }
-vim.g.codeium_enabled = true
+vim.g.codeium_enabled = false
 vim.g.codeium_manual = true

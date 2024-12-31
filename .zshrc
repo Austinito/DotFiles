@@ -57,11 +57,14 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
 # Aliases
+alias l='ls -oAF -D "%Y-%m-%d %H:%M" --color=auto'
+alias ll='ls -o --color=auto'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias gs='git status'
 alias my_gbpurge='git branch --no-track | grep -Ev "(\*|master|develop)" | sed 's/+//' | xargs -n 1 git branch -d'
 alias my_config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias gw='git worktree'

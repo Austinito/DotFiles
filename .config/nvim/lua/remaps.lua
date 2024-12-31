@@ -19,6 +19,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- Directory Navigation
 vim.keymap.set("n", "-", "<cmd>Explore<CR>")
 vim.keymap.set("n", "_", "<cmd>Explore $PWD<CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>Vexplore $PWD<CR>")
 
 -- Buffer Navigation
 vim.keymap.set("n", '<leader>x', '<cmd>bprevious <BAR> bdelete #<CR>')

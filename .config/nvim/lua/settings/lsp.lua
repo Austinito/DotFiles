@@ -12,7 +12,7 @@ M.on_attach = function(_, bufnr)
     vim.keymap.set("n", "<leader>cl", [[<cmd>lua vim.lsp.codelens.run()<CR>]])
     vim.keymap.set("n", "<leader>f", [[<cmd>lua vim.lsp.buf.format({ async = true })<CR>]])
     vim.keymap.set("v", "<leader>f", [[<cmd>lua vim.lsp.buf.format()<CR>]])
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", {buf = bufnr})
 end
 
 M.setup = function()
@@ -69,11 +69,11 @@ M.setup = function()
         ['clangd'] = {
             offsetEncoding = 'utf-16'
         },
-        -- tsserver
+        -- tsserver deprecated, is not ts_ls
         -- We want to overwrite the format capability to use prettier
         -- overwrite the on_attach function to use the one we defined, except for the
         -- formatting part... which will be handled by prettier
-        ['tsserver'] = {
+        ['ts_ls'] = {
             settings = {
                 documentFormatting = false
             },
@@ -95,7 +95,7 @@ M.setup = function()
     }
 
     -- ALL OTHERS
-    local servers = { 'pyright', 'jdtls', 'tsserver', 'vuels', 'csharp_ls', 'clangd' }
+    local servers = { 'pyright', 'jdtls', 'ts_ls', 'vuels', 'csharp_ls', 'clangd' }
     for _, server in ipairs(servers) do
         local config = make_config()
         if server_configs[server] then config = vim.tbl_extend('force', config, server_configs[server]) end

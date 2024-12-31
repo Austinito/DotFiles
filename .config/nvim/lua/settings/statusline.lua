@@ -87,12 +87,17 @@ end
 
 -- TODO: We want to show this section whenever the LSP is active (vs. just when status populated)
 local function metals_status()
-    local status = vim.g["metals_status"]
-    if status and status ~= EmptyString then
-        return " : " .. status .. " "
-    else
-        return EmptyString
+    local resultingString = EmptyString
+    local metals_client = vim.lsp.get_clients({name="metals"})
+    if metals_client[1] then
+        local status = vim.g["metals_status"]
+        if status and status ~= EmptyString then
+            resultingString = " : " .. status .. " "
+        else
+            resultingString = " : Idle "
+        end
     end
+    return resultingString
 end
 
 --This will produce a 3 char long string:

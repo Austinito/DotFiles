@@ -33,7 +33,13 @@ return require('packer').startup(function(use)
         }
     }
     use 'Decodetalkers/csharpls-extended-lsp.nvim'
-    use { 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } }
+    use {
+        'scalameta/nvim-metals',
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "mfussenegger/nvim-dap",
+        }
+    }
     use 'p00f/clangd_extensions.nvim'
 
     -- AI TOOLS
@@ -41,8 +47,8 @@ return require('packer').startup(function(use)
     use 'Exafunction/codeium.vim'
 
     -- Debug tools
-    use 'mfussenegger/nvim-dap'
-
+    use { 'mfussenegger/nvim-dap' }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
     -- PYTHON SPECIFIC
     use 'python-mode/python-mode'
     use 'ookull/behave-integration.vim'
