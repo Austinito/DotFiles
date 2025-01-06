@@ -19,7 +19,6 @@ M.setup = function()
             "akka.actor.typed.javadsl",
             "com.github.swagger.akka.javadsl"
         },
-        scalafmtConfigPath = ".scalafmt.conf",
         testUserInterface = "Test Explorer",
     }
     metals_config.init_options.statusBarProvider = "on"
