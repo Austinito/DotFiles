@@ -69,6 +69,7 @@ alias my_gbpurge='git branch --no-track | grep -Ev "(\*|master|develop)" | sed '
 alias my_config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias gw='git worktree'
 alias :q='exit'
+alias :qa='exit'
 
 # User configuration
 export EDITOR='nvim'
